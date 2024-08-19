@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">WarAndPeace</string>
+    <string name="enter_file_name_hit_text">Enter file name</string>
+    <string name="submit">Submit</string>
+    <string name="enter_file_name">Enter file name</string>
+    <string name="most_frequent_word">Most frequent word: %1$s occurred %2$s times</string>
+    <string name="most__frequent_seven_character_word">Most frequent 7 character word: %1$s occurred %2$s times</string>
+    <string name="highest_scoring_word">    Highest scoring word(s) (according to the score table): %1$s  with a score of  %2$s </string>
+    <string name="example_file_name">(Example file name: 2600–0.txt)</string>
+</resources>

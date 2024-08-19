@@ -1,0 +1,43 @@
+[versions]
+agp = "8.4.1"
+kotlin = "1.9.0"
+coreKtx = "1.13.1"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+appcompat = "1.7.0"
+material = "1.12.0"
+activity = "1.9.1"
+constraintlayout = "2.1.4"
+moshiVersion = "1.15.1"
+hiltVersion = "2.48"
+loggingInterceptorVersion = "4.12.0"
+retrofitVersion = "2.11.0"
+lifecycleRuntimeKtx = "2.8.4"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", name = "moshi", version.ref = "moshiVersion" }
+dagger-hilt = { module = "com.google.dagger:hilt-android", name = "hilt", version.ref = "hiltVersion" }
+dagger-hilt-kapt-compiler = { module = "com.google.dagger:hilt-android-compiler", name = "hilt-android-compier", version.ref = "hiltVersion" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVersion" }
+retrofit-moshi-convertor = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofitVersion" }
+logging-inteceptor = { module = "com.squareup.okhttp3:logging-interceptor", name = "logging-interceptor", version.ref = "loggingInterceptorVersion"}
+retrofit-scalars = { module = "com.squareup.retrofit2:converter-scalars",version.ref = "retrofitVersion" }
+[bundles]
+retrofit = ["retrofit", "retrofit-moshi-convertor", "retrofit-scalars"]
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hiltVersion" }
+
