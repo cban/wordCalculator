@@ -2,6 +2,7 @@ package com.book.warandpeace.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.book.warandpeace.data.local.scores
 import com.book.warandpeace.data.repository.WarAndPeaceRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -11,6 +12,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.jetbrains.annotations.TestOnly
+import org.jetbrains.annotations.VisibleForTesting
 import retrofit2.HttpException
 import javax.inject.Inject
 
@@ -19,22 +22,14 @@ class WarAndPeaceViewModel @Inject constructor(
     private val repository: WarAndPeaceRepository
 ) : ViewModel(
 ) {
-    private val scores = mapOf(
-        'a' to 1, 'b' to 3, 'c' to 3, 'd' to 2, 'e' to 1, 'f' to 4, 'g' to 2,
-        'h' to 4, 'i' to 1, 'j' to 8, 'k' to 5, 'l' to 1, 'm' to 3, 'n' to 1,
-        'o' to 1, 'p' to 3, 'q' to 10, 'r' to 1, 's' to 1, 't' to 1, 'u' to 1,
-        'v' to 4, 'w' to 4, 'x' to 8, 'y' to 4, 'z' to 10
-    )
-
     private val splitWords: List<String> by lazy {
         splitWords()
     }
-
     private val _uiState = MutableStateFlow<UIState>(UIState.Init)
     val uiState: StateFlow<UIState> = _uiState.asStateFlow()
     private var resultsFromLocalNetwork = ""
 
-    private var resultsFromLocalFile: MutableMap<String, Int> = mutableMapOf()
+    var resultsFromLocalFile: Map<String, Int> = mapOf()
 
     fun getFile(textFileName: String) {
         viewModelScope.launch {
@@ -67,7 +62,7 @@ class WarAndPeaceViewModel @Inject constructor(
     }
 
     private fun wordFrequency(): Map<String, Int> {
-        val resulting = if (resultsFromLocalFile.isEmpty()) {
+        val resulting = resultsFromLocalFile.ifEmpty {
             val words = splitWords
             words.groupBy {
                 it
@@ -75,8 +70,6 @@ class WarAndPeaceViewModel @Inject constructor(
                 .toList()
                 .sortedByDescending { it.second }
                 .toMap()
-        } else {
-            resultsFromLocalFile
         }
         return resulting
     }
@@ -86,7 +79,6 @@ class WarAndPeaceViewModel @Inject constructor(
         val splitWords = nomarlizedWords.split("\\s+".toRegex()).map { it.lowercase() }
         return splitWords
     }
-
 
     fun mostFrequentWord(): Map.Entry<String, Int>? {
         return wordFrequency().maxByOrNull { it.value }
@@ -126,5 +118,10 @@ class WarAndPeaceViewModel @Inject constructor(
                 _uiState.value = UIState.Error("Unexpected Error: ${exception.message}")
             }
         }
+    }
+
+    @TestOnly
+    fun setResultsFromLocal(results: Map<String, Int>) {
+        resultsFromLocalFile = results
     }
 }

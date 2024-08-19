@@ -54,7 +54,14 @@ dependencies {
     implementation(libs.logging.inteceptor)
     implementation(libs.moshi.kotlin)
     kapt(libs.dagger.hilt.kapt.compiler)
+
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.kotlinx.coroutines.test.jvm)
+    testImplementation(libs.mockito.core)
+    androidTestImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.mockito.android)
 }
