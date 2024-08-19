@@ -5,19 +5,15 @@ import com.book.warandpeace.data.network.RemoteApi
 import com.book.warandpeace.data.repository.WarAndPeaceRepositoryImpl
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
-
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
-import org.mockito.kotlin.isNotNull
 import org.mockito.kotlin.verify
-import org.mockito.kotlin.whenever
 
 class WarAndPeaceRepositoryImplTest {
 
     private lateinit var subjectUnderTest: WarAndPeaceRepositoryImpl
-
     private val apiService: RemoteApi = Mockito.mock(RemoteApi::class.java)
     private val fileReader: FileReader = Mockito.mock(FileReader::class.java)
 
@@ -62,7 +58,6 @@ class WarAndPeaceRepositoryImplTest {
 
     }
 
-
     @Test
     fun `verify WarAndPeaceRepositoryImpl getMostFrequentWordsFromLocalFile  returns the correct frequent words`() =
         runTest {
@@ -75,6 +70,4 @@ class WarAndPeaceRepositoryImplTest {
             assertEquals(expectedWordFrequency, result)
             verify(fileReader).getWordFrequencies(textFileUrl)
         }
-
-
 }

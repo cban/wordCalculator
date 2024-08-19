@@ -1,20 +1,13 @@
 package com.book.warandpeace.data.local
 
 import android.content.Context
-import android.content.res.AssetManager
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
-
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.Mockito.`when`
-import java.io.ByteArrayInputStream
-import java.io.InputStream
-
 @RunWith(AndroidJUnit4::class)
 class FileReaderImplTest {
 

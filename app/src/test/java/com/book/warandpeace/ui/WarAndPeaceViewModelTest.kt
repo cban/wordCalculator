@@ -10,9 +10,7 @@ import org.junit.Test
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.kotlin.verify
-
 class WarAndPeaceViewModelTest {
-
 
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
@@ -27,7 +25,6 @@ class WarAndPeaceViewModelTest {
             warAndPeaceRepository
         )
     }
-
     @Test
     fun `getFile should emit success data when getFile returns data`() = runTest {
         val expected = UIState.Success("This is a test file")
@@ -112,7 +109,6 @@ class WarAndPeaceViewModelTest {
         assertFalse(result)
     }
 
-
     @Test
     fun `mostFrequentWord should return the word with the highest frequency`() {
         val mockFrequencyMap = mapOf("hello" to 5, "world" to 3, "test" to 7)
@@ -143,6 +139,5 @@ class WarAndPeaceViewModelTest {
 
         assertEquals(Pair("hello", 8), result)
     }
-
 
 }
